@@ -19,7 +19,6 @@ public class LoginTest {
         browser.findElement(By.xpath("//*[@data-test='login-button']")).click();
 //        browser.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
 //        assertTrue(browser.findElement(By.xpath("//*[@data-test='error']")).isDisplayed());
-//dfdg
         boolean isErrorDisplayed = browser.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
         String errorMessage = browser.findElement(By.xpath("//*[@data-test='error']")).getText();
 
