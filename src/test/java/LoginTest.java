@@ -39,4 +39,21 @@ public class LoginTest {
 
         browser.quit();
     }
+
+    @Test
+    public void emptyPassword() {
+        WebDriver browser = new ChromeDriver();
+        browser.get("https://www.saucedemo.com/");
+        browser.findElement(By.xpath("//*[@data-test='username']")).sendKeys("standard_user2");
+        browser.findElement(By.xpath("//*[@data-test='password']")).sendKeys("");
+        browser.findElement(By.xpath("//*[@data-test='login-button']")).click();
+        browser.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
+        browser.findElement(By.xpath("//*[@data-test='error']")).getText();
+
+        assertTrue(browser.findElement(By.xpath("//*[@data-test='error']")).isDisplayed());
+        assertEquals(browser.findElement(By.xpath("//*[@data-test='error']")).getText(),
+                "Epic sadface: Password is required");
+
+        browser.quit();
+    }
 }
