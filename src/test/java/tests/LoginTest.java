@@ -1,32 +1,28 @@
 package tests;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.*;
 
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(description = "Проверка верной авторизации")
     public void validLogin() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
-        assertTrue(driver.findElement(By.xpath("//*[@data-test='title']")).isDisplayed(),
-                "Сообщение об ошибке не отображено!");
-        assertEquals(driver.findElement(By.xpath("//*[@data-test='title']")).getText(),
-                "Products");
+        assertTrue(productsPage.pageIsOpen(), "Сообщение об ошибке не отображено");
+        assertEquals(productsPage.getNamePage(), "Products",
+                "Название страницы не соответствует ожидаемому");
     }
 
     @Test
     public void invalidLogin() {
         loginPage.open();
         loginPage.login("standard_user2", "secret_sauce");
-        driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
-        driver.findElement(By.xpath("//*[@data-test='error']")).getText();
 
-        assertTrue(driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed());
-        assertEquals(driver.findElement(By.xpath("//*[@data-test='error']")).getText(),
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(),
                 "Epic sadface: Username and password do not match any user in this service");
     }
 
@@ -34,11 +30,9 @@ public class LoginTest extends BaseTest {
     public void lockedLogin() {
         loginPage.open();
         loginPage.login("locked_out_user", "secret_sauce");
-        driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
-        driver.findElement(By.xpath("//*[@data-test='error']")).getText();
 
-        assertTrue(driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed());
-        assertEquals(driver.findElement(By.xpath("//*[@data-test='error']")).getText(),
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(),
                 "Epic sadface: Sorry, this user has been locked out.");
     }
 
@@ -46,11 +40,9 @@ public class LoginTest extends BaseTest {
     public void emptyPassword() {
         loginPage.open();
         loginPage.login("standard_user2", "");
-        driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
-        driver.findElement(By.xpath("//*[@data-test='error']")).getText();
 
-        assertTrue(driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed());
-        assertEquals(driver.findElement(By.xpath("//*[@data-test='error']")).getText(),
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(),
                 "Epic sadface: Password is required");
     }
 
@@ -58,11 +50,9 @@ public class LoginTest extends BaseTest {
     public void emptyLogin() {
         loginPage.open();
         loginPage.login("", "secret_sauce");
-        driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed();
-        driver.findElement(By.xpath("//*[@data-test='error']")).getText();
 
-        assertTrue(driver.findElement(By.xpath("//*[@data-test='error']")).isDisplayed());
-        assertEquals(driver.findElement(By.xpath("//*[@data-test='error']")).getText(),
+        assertTrue(loginPage.isErrorDisplayed());
+        assertEquals(loginPage.getErrorText(),
                 "Epic sadface: Username is required");
     }
 }
