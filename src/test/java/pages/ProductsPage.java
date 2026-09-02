@@ -6,8 +6,8 @@ import org.openqa.selenium.WebDriver;
 public class ProductsPage extends BasePage {
     private static final String ADD_TO_CART = "//*[text()='%s']//ancestor::div" +
             "[@class='inventory_item']//child::*[text()='Add to cart']";
-    private final By pageName = By.xpath("//*[@data-test='title']");
-    private final By counter = By.xpath("//*[@data-test='shopping-cart-badge']");
+    private final By pageName = By.xpath(DATA_TEST_PATTERN.formatted("title"));
+    private final By counter = By.xpath(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
     private final By addToCartBtn = By.xpath("//*[text()='Add to cart']");
 
 

@@ -8,14 +8,15 @@ import java.time.Duration;
 
 public class BasePage {
     public static final String BASE_URL = "https://www.saucedemo.com/";
-    private final By pageName = By.xpath("//*[@data-test='title']");
+    public static final String DATA_TEST_PATTERN = "//*[@data-test='%s']";
+    private final By pageName = By.xpath(DATA_TEST_PATTERN.formatted("title"));
 
     WebDriver driver;
     WebDriverWait wait;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
 
     public boolean pageIsOpen() {

@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 public class LoginTest extends BaseTest {
 
     @Test(description = "Проверка верной авторизации", priority = 1)
-    public void validLogin() {
+    public void validLoginTest() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
 
@@ -28,7 +28,7 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(dataProvider = "loginData", priority = 2)
-    public void invalidLogin(String user, String password, String errorMsg) {
+    public void invalidLoginTest(String user, String password, String errorMsg) {
         loginPage.open();
         loginPage.login(user, password);
 

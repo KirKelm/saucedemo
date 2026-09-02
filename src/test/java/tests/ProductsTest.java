@@ -7,19 +7,13 @@ import java.util.List;
 import static org.testng.Assert.assertEquals;
 
 public class ProductsTest extends BaseTest {
-    List<String> goodsList =
-            List.of(
-                    "Sauce Labs Backpack",
-                    "Sauce Labs Bike Light",
-                    "Sauce Labs Bolt T-Shirt"
-            );
+    List<String> goodsList = List.of("Sauce Labs Backpack", "Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt");
 
     @Test
     public void checkGoodsAdded() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
         productsPage.pageIsOpen();
-
         productsPage.addToCart(5);
 
         for (String goodName : goodsList) {
