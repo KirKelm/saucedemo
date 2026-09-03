@@ -9,7 +9,6 @@ public class LoginPage extends BasePage {
     private final By loginBtn = By.xpath(DATA_TEST_PATTERN.formatted("login-button"));
     private final By error = By.xpath(DATA_TEST_PATTERN.formatted("error"));
 
-
     public LoginPage(WebDriver driver) {
         super(driver);
     }

@@ -10,7 +10,6 @@ public class ProductsPage extends BasePage {
     private final By counter = By.xpath(DATA_TEST_PATTERN.formatted("shopping-cart-badge"));
     private final By addToCartBtn = By.xpath("//*[text()='Add to cart']");
 
-
     public ProductsPage(WebDriver driver) {
         super(driver);
     }
@@ -35,5 +34,4 @@ public class ProductsPage extends BasePage {
     public String checkCounterColor() {
         return (driver.findElement(counter).getCssValue("background-color"));
     }
-
 }
